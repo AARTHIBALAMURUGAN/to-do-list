@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>to-do-list</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .back {
+      
+      background-color: #B85042;
+      width: 30%;
+      overflow:auto;
+      height: 500px;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 5%;
+      margin-left: 30%;
+
+    }
+    .cont {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    #one {
+      width: 70%;
+      height: 40px;
+      border-radius: 15px;
+      border: none;
+      background-color: #E7E8D1;
+      padding: 0 10px;
+      font-size: 16px;
+    }
+
+
+    
+    .but {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      border-radius: 50px;
+      border: none;
+      font-size: 25px;
+      background-color: #e3e899;
+      cursor: pointer;
+    }
+    #two input {
+      width: calc(100% - 50px);
+      height: 30px;
+      border: none;
+      background: transparent;
+      border-bottom: solid black 1px;
+      font-size: 14px;
+      padding: 5px;
+      margin-right: 5px;
+    }
+     
+
+    
+
+    #two button {
+      height: 40px;
+      width: 40px;
+      background-color: #B85042;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    @media  screen and (max-width:600px) {
+      .back{
+        width: 50%;
+        height: 500px;
+      }
+      
+    }
+  </style>
+</head>
+<body>
+  <overflow-x:hidden></overflow-x:hidden>
+  <div class="back">
+    <div class="cont">
+      <input id="one" type="text" placeholder="New Task">
+      <button class="but" onclick="add()">+</button>
+    </div>
+    <div id="two"></div>
+  </div>
+
+  <script>
+    function add() {
+      var taskInput = document.getElementById("one");
+      var taskText = taskInput.value.trim();
+
+      if (taskText !== "") {
+        var newItem = document.createElement("div");
+        newItem.classList.add("cont");
+
+        var newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.value = taskText;
+        newInput.setAttribute("readonly", true);
+
+        var deleteButton = document.createElement("button");
+        deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+        deleteButton.classList.add("but");
+        deleteButton.onclick = function() {
+          newItem.remove();
+        };
+
+        newItem.appendChild(newInput);
+        newItem.appendChild(deleteButton);
+
+        document.getElementById("two").appendChild(newItem);
+
+        taskInput.value = ""; // Clear input field after adding
+      }
+    }
+    
+  </script>
+</body>
+</html>
